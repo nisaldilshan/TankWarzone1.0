@@ -17,7 +17,10 @@ public class GameManagerCar : MonoBehaviour {
     private GameObject sceneCamera;
 
     [SerializeField]
-    private GameObject MinimapCamera;
+    public GameObject MinimapCamera;
+
+    [SerializeField]
+    public GameObject DustParticles;
 
     [SerializeField]
     private GameObject loading_Screen;
@@ -82,6 +85,7 @@ public class GameManagerCar : MonoBehaviour {
     {
         MapSelect.instance.Map(arenaHolder);
     }
+
 
     #region Player tracking
 

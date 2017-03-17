@@ -36,10 +36,7 @@ public class PlayerUI : MonoBehaviour {
     public bool motionblur = true;
     public bool bloom = true;
     public bool sunshafts = true;
-    public bool minimap = true;
     public bool reflections = true;
-    public bool particle = true;
-    public bool toggle = true;
     //
 
     void Start()
@@ -117,4 +114,6 @@ public class PlayerUI : MonoBehaviour {
 
         PauseMenu.instance.Options_OFF();
     }
+
+    
 }

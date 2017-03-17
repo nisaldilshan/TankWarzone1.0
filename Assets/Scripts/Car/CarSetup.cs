@@ -33,9 +33,11 @@ public class CarSetup : NetworkBehaviour
     //
 
     [SerializeField]
-    Behaviour[] options_behavior;
+    private Behaviour[] options_behavior;
     [SerializeField]
-    GameObject[] options_objects;
+    private GameObject[] options_objects;
+
+    public static GameObject ui_instance_for_optionsmenu;
 
     void Start()
     {
@@ -61,6 +63,9 @@ public class CarSetup : NetworkBehaviour
             //create player UI
             playerUIInstance = Instantiate(playerUIPrefab);
             playerUIInstance.name = playerUIPrefab.name;
+
+
+            ui_instance_for_optionsmenu = playerUIInstance;
 
             //configure player UI
             ui = playerUIInstance.GetComponent<PlayerUI>();
@@ -134,10 +139,15 @@ public class CarSetup : NetworkBehaviour
 
     void Set_OptionsMenu(PlayerUI ui)
     {
-        options_behavior[0].enabled = ui.ssao;
-        options_behavior[1].enabled = ui.motionblur;
-        options_behavior[2].enabled = ui.bloom;
-        options_behavior[3].enabled = ui.sunshafts;
+        if (isLocalPlayer)
+        {
+            options_behavior[0].enabled = ui.ssao;
+            options_behavior[1].enabled = ui.motionblur;
+            options_behavior[2].enabled = ui.bloom;
+            options_behavior[3].enabled = ui.sunshafts;
+            options_objects[0].SetActive(ui.reflections);
+        }
+
     }
 
     void AssignRemoteLayer()
@@ -187,4 +197,10 @@ public class CarSetup : NetworkBehaviour
         MapSelect.instance.SetMapNumber(currentmapnumber);
         GameManagerCar.instance.SetArenaholder();
     }
+
+    
+    public static GameObject Get_UI_Instance()
+    {
+        return ui_instance_for_optionsmenu;
+    } 
 }
