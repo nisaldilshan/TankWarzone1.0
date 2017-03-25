@@ -21,7 +21,6 @@ public class MainMenu : MonoBehaviour {
 
     [SerializeField]
     private InputField nickname_text;
-
     //Scripts
     [SerializeField]
     private GameObject hostgamescript;
@@ -29,7 +28,6 @@ public class MainMenu : MonoBehaviour {
     private GameObject joingamescript;
     [SerializeField]
     private GameObject LANgamescript;
-
 
     public int number;
 
