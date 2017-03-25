@@ -9,6 +9,15 @@ public class CarController : MonoBehaviour {
     [SerializeField]
     private float gunsensitivity = 2f;
 
+    //Sound
+    public AudioSource m_MovementAudio;
+    public AudioClip m_EngineIdling;
+    public AudioClip m_EngineDriving;
+    public float m_PitchRange = 0.2f;
+    private float m_OriginalPitch;
+    private float steerwheel;
+    private float accelerate;
+
     [SerializeField]
     private float thrusterforce = 1000f;
     [SerializeField]
@@ -32,6 +41,9 @@ public class CarController : MonoBehaviour {
     /////////////////////////////////////////
     void Start ()
     {
+        //Sound
+        m_OriginalPitch = m_MovementAudio.pitch;
+
         motor = GetComponent<CarMotor>();
         animator = GetComponent<Animator>();
     }
@@ -58,10 +70,16 @@ public class CarController : MonoBehaviour {
         }
 
         //calculate movement velocity as a 3D vector
-        float steerwheel = Input.GetAxis("Horizontal");
-        float accelerate = Input.GetAxis("Vertical");
+        steerwheel = Input.GetAxis("Horizontal");
+        accelerate = Input.GetAxis("Vertical");
+        // Debug.Log("Steerwheel = "+steerwheel + " Accelerate = "+accelerate);
         float _torque = maxTorque * accelerate;
         float _steer = steerwheel * maxSteerAngle;
+        // Debug.Log("Torque = "+_torque + " Steer = "+_steer);                //Maximum steer 35 & -35
+
+        //Sound
+        EngineAudio();
+
         //apply movement
         motor.Move(_torque,_steer);
 
@@ -71,6 +89,8 @@ public class CarController : MonoBehaviour {
         //calculate rotation as a 3d vector
         float _yRot = Input.GetAxisRaw("Mouse X");
         float _rotationspeed = -_yRot * gunsensitivity;
+        // Debug.Log("Rotation Speed = "+_rotationspeed);
+
         //apply rotation
         motor.Rotate(_rotationspeed);
 
@@ -101,6 +121,27 @@ public class CarController : MonoBehaviour {
 
         //apply thruster force
         motor.ApplyThruster(_thrusterforce);
+    }
+
+    private void EngineAudio(){
+        //Check if tank is idle     
+        if(Mathf.Abs(accelerate)<0.1f){
+            //Checking playing clip and changing it to idling
+            if(m_MovementAudio.clip == m_EngineDriving){
+                m_MovementAudio.clip = m_EngineIdling;
+                m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+                m_MovementAudio.Play();
+            }
+        }
+        else{
+            //Checking playing clip and changing it to Driving
+            if(m_MovementAudio.clip == m_EngineIdling){
+                m_MovementAudio.clip = m_EngineDriving;
+                m_MovementAudio.pitch = Random.Range(m_OriginalPitch - m_PitchRange, m_OriginalPitch + m_PitchRange);
+                m_MovementAudio.Play();
+            }
+        }
+
     }
 
 }
