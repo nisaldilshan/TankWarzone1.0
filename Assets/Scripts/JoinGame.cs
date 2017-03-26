@@ -19,6 +19,10 @@ public class JoinGame : MonoBehaviour {
     [SerializeField]
     private Transform roomListParent;
 
+    //Sounds
+    public AudioSource m_MenuAudio;
+    public AudioClip m_Click;
+
     private NetworkManager networkManager;
 
     void Start ()
@@ -36,6 +40,9 @@ public class JoinGame : MonoBehaviour {
 
     public void RefreshRoomList()
     {
+        //Sound
+        ClickAudio();
+
         ClearRoomList();
 
         if (networkManager.matchMaker == null)
@@ -138,6 +145,11 @@ public class JoinGame : MonoBehaviour {
 
         RefreshRoomList();
 
+    }
+
+    private void ClickAudio(){
+        m_MenuAudio.clip = m_Click;
+        m_MenuAudio.Play();
     }
 
 }
