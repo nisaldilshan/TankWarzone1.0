@@ -100,19 +100,17 @@ public class PlayerObject : NetworkBehaviour {
     }
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-    //void Update()
-    //{
-    //    if (!isLocalPlayer)
-    //    {
-    //        return;
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        RpcTakeDamage(99999);
-    //    }
-    //}
-
-    
+    void Update()
+    {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            RpcTakeDamage(99999, username);
+        }
+    }
 
     [ClientRpc]
     public void RpcTakeDamage(int _amount, string _sourceID)
@@ -142,8 +140,6 @@ public class PlayerObject : NetworkBehaviour {
             sourcePlayer.Kills++;
             GameManagerCar.instance.onPlayerKilledCallback.Invoke(username, sourcePlayer.username);
         }
-
-       
 
         Deaths++;
 
@@ -197,7 +193,7 @@ public class PlayerObject : NetworkBehaviour {
         transform.position = _spawnPoint.position;
         transform.rotation = _spawnPoint.rotation;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
 
         Setup();
 
@@ -231,8 +227,15 @@ public class PlayerObject : NetworkBehaviour {
             colliders_disableOnDeath[i].enabled = true;
         }
 
+        WaitforTime(0.05f);
+
         //Instantiate Spawn Effect
         GameObject _gfxspawn = (GameObject)Instantiate(spawnEffect, transform.position, Quaternion.identity);
         Destroy(_gfxspawn, 3f);
+    }
+
+    private IEnumerator WaitforTime(float t)
+    {
+        yield return new WaitForSeconds(t);
     }
 }
