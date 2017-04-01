@@ -5,6 +5,10 @@ public class LAN : MonoBehaviour {
 
     public static bool IsLANOn = false;
 
+    //Sounds
+    public AudioSource m_MenuAudio;
+    public AudioClip m_Click;
+
     private string IPAddress;
 
     private NetworkManager networkManager;
@@ -16,6 +20,9 @@ public class LAN : MonoBehaviour {
 	
     public void HostGame()
     {
+        //Sound
+        ClickAudio();
+        
         networkManager.StartHost();
         IsLANOn = true;
     }
@@ -31,5 +38,10 @@ public class LAN : MonoBehaviour {
     {
         networkManager.StartClient();
         IsLANOn = true;
+    }
+
+    private void ClickAudio(){
+        m_MenuAudio.clip = m_Click;
+        m_MenuAudio.Play();
     }
 }

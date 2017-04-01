@@ -9,6 +9,10 @@ public class CarShoot : NetworkBehaviour{
 
     private const string PLAYER_TAG = "PlayerCollider";
 
+    //Sounds
+    public AudioSource m_MiniGunAudio;
+    public AudioClip m_Fire;
+
     [SerializeField]
     private Camera cam;
     [SerializeField]
@@ -108,6 +112,10 @@ public class CarShoot : NetworkBehaviour{
             weaponManager.Reload();
             return;
         }
+
+        //Sound
+        m_MiniGunAudio.clip = m_Fire;
+        m_MiniGunAudio.Play();
 
         currentWeapon.bullets--;
         

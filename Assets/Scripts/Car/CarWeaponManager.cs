@@ -15,6 +15,10 @@ public class CarWeaponManager : NetworkBehaviour {
     [SerializeField]
     private CarWeapon primaryWeapon;
 
+    //Sounds
+    public AudioSource m_MiniGunAudio;
+    public AudioClip m_Reload;
+
     private CarWeapon currentWeapon;
     private CarWeaponGraphics currentGraphics;
     private Component turretGraphics;
@@ -80,7 +84,11 @@ public class CarWeaponManager : NetworkBehaviour {
     private IEnumerator Reload_Coroutine()
     {
         isReloading = true;
-        //Debug.Log("Reloading");
+        // Debug.Log("Reloading");
+
+        //Sound
+        m_MiniGunAudio.clip = m_Reload;
+        m_MiniGunAudio.Play();
 
         CmdOnReload();
 

@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: a49ab25a84532f444a1ee4062beb29c6
-timeCreated: 1483892684
+timeCreated: 1490432033
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_MenuAudio: {instanceID: 0}
+  - m_Click: {fileID: 8300000, guid: 349132c1c81704d419474422fbf3b203, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

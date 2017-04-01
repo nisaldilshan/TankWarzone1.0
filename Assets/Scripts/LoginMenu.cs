@@ -29,6 +29,10 @@ public class LoginMenu : MonoBehaviour {
     //This UI Text displays the username once logged in. It shows it in the form "Logged In As: " + username
     public Text LoggedIn_DisplayUsernameText;
 
+    //Sounds
+    public AudioSource m_MenuAudio;
+    public AudioClip m_Click;
+
     //These store the username and password of the player when they have logged in
     //private string playerUsername = "";
     //private string playerPassword = "";
@@ -138,7 +142,8 @@ public class LoginMenu : MonoBehaviour {
     //UI Button Pressed Methods
     public void Login_LoginButtonPressed ()
     {
-        //Called when player presses button to Login
+        //Sounds
+        ClickAudio();
 
         //Check the lengths of the username and password. (If they are wrong, we might as well show an error now instead of waiting for the request to the server)
         if (Login_UsernameField.text.Length > 3)
@@ -163,6 +168,9 @@ public class LoginMenu : MonoBehaviour {
     }
     public void Login_RegisterButtonPressed ()
     {
+        //Sounds
+        ClickAudio();
+
         //Called when the player hits register on the Login UI, so switches to the Register UI
         ResetAllUIElements();
         loginParent.gameObject.SetActive(false);
@@ -170,9 +178,10 @@ public class LoginMenu : MonoBehaviour {
     }
     public void Register_RegisterButtonPressed ()
     {
+        //Sounds
+        ClickAudio();
+
         //Called when the player presses the button to register
-
-
 
         //Make sure username and password are long enough
         if (Register_UsernameField.text.Length > 3)
@@ -207,6 +216,9 @@ public class LoginMenu : MonoBehaviour {
     }
     public void Register_BackButtonPressed ()
     {
+        //Sounds
+        ClickAudio();
+
         //Called when the player presses the 'Back' button on the register UI. Switches back to the Login UI
         ResetAllUIElements();
         loginParent.gameObject.SetActive(true);
@@ -215,6 +227,9 @@ public class LoginMenu : MonoBehaviour {
     
     public void LoggedIn_LogoutButtonPressed ()
     {
+        //Sounds
+        ClickAudio();
+        
         //Called when the player hits the 'Logout' button. Switches back to Login UI and forgets the player's username and password.
         //Note: Database Control doesn't use sessions, so no request to the server is needed here to end a session.
         ResetAllUIElements();
@@ -223,5 +238,14 @@ public class LoginMenu : MonoBehaviour {
         UserAccountManager.instance.LogOut();
         loginParent.gameObject.SetActive(true);
         loggedInParent.gameObject.SetActive(false);
+    }
+    public void LoginBypass()
+    {
+        UserAccountManager.instance.LoginBypass();
+    }
+
+    private void ClickAudio(){
+        m_MenuAudio.clip = m_Click;
+        m_MenuAudio.Play();
     }
 }

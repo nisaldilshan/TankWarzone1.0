@@ -22,6 +22,10 @@ public class MainMenu : MonoBehaviour {
     [SerializeField]
     private InputField nickname_text;
 
+    //Sounds
+    public AudioSource m_MenuAudio;
+    public AudioClip m_Click;
+
     //Scripts
     [SerializeField]
     private GameObject hostgamescript;
@@ -52,6 +56,9 @@ public class MainMenu : MonoBehaviour {
         hostgamescript.SetActive(true);
         joingamescript.SetActive(true);
         LANgamescript.SetActive(true);
+
+        //Sound
+        ClickAudio();
     }
 
 
@@ -63,11 +70,17 @@ public class MainMenu : MonoBehaviour {
         //hostgamescript.SetActive(true);
         //joingamescript.SetActive(true);
         LANgamescript.SetActive(true);
+
+        //Sound
+        ClickAudio();   
     }
 
 
     public void Online2MainMenu()
     {
+        //Sound
+        ClickAudio();
+        
         onlineMenu.SetActive(false);
         mainMenu.SetActive(true);
 
@@ -79,6 +92,9 @@ public class MainMenu : MonoBehaviour {
 
     public void LAN2MainMenu()
     {
+        //Sound
+        ClickAudio();
+
         lanMenu.SetActive(false);
         mainMenu.SetActive(true);
 
@@ -89,6 +105,9 @@ public class MainMenu : MonoBehaviour {
 
     public void LAN2Host()
     {
+        //Sound
+        ClickAudio();
+
         lanMenu.SetActive(false);
         lanhostgame.SetActive(true);
         MapSelect.instance.SetMapNumber(0);
@@ -98,6 +117,9 @@ public class MainMenu : MonoBehaviour {
 
     public void Host2LAN()
     {
+        //Sound
+        ClickAudio();
+
         lanhostgame.SetActive(false);
         lanMenu.SetActive(true);
         MapSelect.instance.ISHOST(false);
@@ -106,6 +128,9 @@ public class MainMenu : MonoBehaviour {
 
     public void Online2Host()
     {
+        //Sound
+        ClickAudio();
+
         onlineMenu.SetActive(false);
         onlinehostgame.SetActive(true);
         MapSelect.instance.SetMapNumber(0);
@@ -115,6 +140,9 @@ public class MainMenu : MonoBehaviour {
 
     public void Host2Online()
     {
+        //Sound
+        ClickAudio();
+
         onlinehostgame.SetActive(false);
         onlineMenu.SetActive(true);
         MapSelect.instance.ISHOST(false);
@@ -122,6 +150,9 @@ public class MainMenu : MonoBehaviour {
 
     public void ToggleNickName()
     {
+        //Sound
+        ClickAudio();
+
         if (UserAccountManager.IsnicknameEnabled)
         {
             UserAccountManager.instance.NickName_OFF();
@@ -132,6 +163,7 @@ public class MainMenu : MonoBehaviour {
             UserAccountManager.instance.NickName_ON();
             nickname_text.interactable = true;
         }
+
     }
 
     public void setNickName(string _nickname)
@@ -146,6 +178,11 @@ public class MainMenu : MonoBehaviour {
     {
         number = _number;
         MapSelect.instance.SetMapNumber(number);
+    }
+
+    private void ClickAudio(){
+        m_MenuAudio.clip = m_Click;
+        m_MenuAudio.Play();
     }
 
 }
