@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-
-
 public class UserAccount_Lobby : MonoBehaviour {
 
     public Text usernameText;
@@ -13,24 +11,20 @@ public class UserAccount_Lobby : MonoBehaviour {
 
     void Start ()
     {
-        if (UserAccountManager.IsLoggedIn)
+        if (UserAccountManager.IsLoggedIn || UserAccountManager.IsLoginBypassed)
         {
             usernameText.text = UserAccountManager.LoggedIn_Username;
         }
-
-
     }
 
     public void LogOut()
     {
         ClickAudio();
 
-        if (UserAccountManager.IsLoggedIn)
+        if (UserAccountManager.IsLoggedIn || UserAccountManager.IsLoginBypassed)
         {
             UserAccountManager.instance.LogOut();
         }
-
-
     }
 
     private void ClickAudio(){

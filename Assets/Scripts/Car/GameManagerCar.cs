@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,6 +41,8 @@ public class GameManagerCar : MonoBehaviour {
         else
         {
             instance = this;
+            StartCoroutine(LoadingScreen_WaitTime());
+
         }
     }
 
@@ -79,6 +82,12 @@ public class GameManagerCar : MonoBehaviour {
     public void SetLoading_screen(bool value)
     {
         loading_Screen.SetActive(value);
+    }
+
+    IEnumerator LoadingScreen_WaitTime()
+    {
+        yield return new WaitForSeconds(0.6f);
+        SetLoading_screen(false);
     }
 
     public void SetArenaholder()

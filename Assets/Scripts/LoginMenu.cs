@@ -145,8 +145,6 @@ public class LoginMenu : MonoBehaviour {
         //Sounds
         ClickAudio();
 
-        //Called when player presses button to Login
-
         //Check the lengths of the username and password. (If they are wrong, we might as well show an error now instead of waiting for the request to the server)
         if (Login_UsernameField.text.Length > 3)
         {
@@ -240,6 +238,10 @@ public class LoginMenu : MonoBehaviour {
         UserAccountManager.instance.LogOut();
         loginParent.gameObject.SetActive(true);
         loggedInParent.gameObject.SetActive(false);
+    }
+    public void LoginBypass()
+    {
+        UserAccountManager.instance.LoginBypass();
     }
 
     private void ClickAudio(){

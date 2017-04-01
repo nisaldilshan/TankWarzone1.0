@@ -27,6 +27,7 @@ public class UserAccountManager : MonoBehaviour {
     public static string LoggedIn_Data { get; protected set; }
 
     public static bool IsLoggedIn { get; protected set; }
+    public static bool IsLoginBypassed { get; protected set; }
     public static bool IsnicknameEnabled { get; protected set; }
 
     public string loggedInSceneName = "Lobby";
@@ -40,6 +41,7 @@ public class UserAccountManager : MonoBehaviour {
         LoggedIn_Password = "";
 
         IsLoggedIn = false;
+        IsLoginBypassed = false;
 
         Debug.Log("user logged out...!");
 
@@ -60,11 +62,12 @@ public class UserAccountManager : MonoBehaviour {
 
     public void LoginBypass()
     {
-        //LoggedIn_Username = username;
-        //LoggedIn_Password = password;
+        //LoggedIn_Username = "LOGIN_BYPASSED";
+        //LoggedIn_Password = "LOGIN_BYPASSED";
 
         IsLoggedIn = false;
         IsnicknameEnabled = false;
+        IsLoginBypassed = true;
 
         Debug.Log("Login Bypassed");
 

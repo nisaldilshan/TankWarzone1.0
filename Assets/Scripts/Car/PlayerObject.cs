@@ -66,7 +66,6 @@ public class PlayerObject : NetworkBehaviour {
         if (isLocalPlayer)
         {
             GameManagerCar.instance.SetSceneCameraActive(false);
-            GameManagerCar.instance.SetLoading_screen(false);
             //
             GameManagerCar.instance.SetminimapActive(true);
             //
