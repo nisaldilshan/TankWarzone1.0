@@ -50,6 +50,10 @@ public class CarMotor : MonoBehaviour {
     [SerializeField]
     private GameObject thruster4;
 
+    //Sounds
+    public AudioSource m_Boosters;
+    public AudioClip m_Boost;
+
     private Rigidbody rb;
     /////////////////////////////////////////
     void Start()
@@ -82,7 +86,7 @@ public class CarMotor : MonoBehaviour {
     //get forces for the Thruster
     public void ApplyThruster(Vector3 _thrusterforce)
     {
-        thrusterforce = _thrusterforce;
+        thrusterforce = _thrusterforce;        
     }
 
     /////////////////////////////////////////
@@ -138,6 +142,9 @@ public class CarMotor : MonoBehaviour {
             //back
             rb.AddForceAtPosition(thrusterforce * Time.fixedDeltaTime, thrusterplace3, ForceMode.Impulse);
             rb.AddForceAtPosition(thrusterforce * Time.fixedDeltaTime, thrusterplace4, ForceMode.Impulse);
+            Debug.Log("Wee!");
+            //Sound
+        	BoostAudio();
         }
     }
 
@@ -163,5 +170,11 @@ public class CarMotor : MonoBehaviour {
         gun.transform.localEulerAngles = new Vector3(curret_gun_tilt, 0f, 0f);
 
     }
+
+    private void BoostAudio(){
+        m_Boosters.clip = m_Boost;
+        m_Boosters.Play();
+    }
+
 
 }
