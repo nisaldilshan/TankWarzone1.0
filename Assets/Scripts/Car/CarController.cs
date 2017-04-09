@@ -110,11 +110,17 @@ public class CarController : MonoBehaviour {
             if (thrusterFuelAmount > 0.01f)
             {
                 _thrusterforce = Vector3.up * thrusterforce;
+                //Activate JUMP effects
+                motor.Activate_JUMP_effects(true);
+                //
             }
         }
         else
         {
             thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
+            //Deactivate JUMP effects
+            motor.Activate_JUMP_effects(false);
+            //
         }
 
         thrusterFuelAmount = Mathf.Clamp(thrusterFuelAmount, 0f, 1f);
@@ -122,6 +128,15 @@ public class CarController : MonoBehaviour {
         //apply thruster force
         motor.ApplyThruster(_thrusterforce);
     }
+
+
+
+
+
+
+
+
+
 
     private void EngineAudio(){
         //Check if tank is idle     
