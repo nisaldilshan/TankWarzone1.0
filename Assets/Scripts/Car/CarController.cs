@@ -105,7 +105,7 @@ public class CarController : MonoBehaviour {
         Vector3 _thrusterforce = Vector3.zero;
         if (Input.GetButton("Jump") && thrusterFuelAmount > 0f)
         {
-            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
+            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;            
 
             if (thrusterFuelAmount > 0.01f)
             {
