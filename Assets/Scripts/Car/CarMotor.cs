@@ -30,6 +30,17 @@ public class CarMotor : MonoBehaviour {
     private Vector3 thrusterplace2 = Vector3.zero;
     private Vector3 thrusterplace3 = Vector3.zero;
     private Vector3 thrusterplace4 = Vector3.zero;
+
+    //thruster effects
+    [SerializeField]
+    private GameObject thruster_eff1;
+    [SerializeField]
+    private GameObject thruster_eff2;
+    [SerializeField]
+    private GameObject thruster_eff3;
+    [SerializeField]
+    private GameObject thruster_eff4;
+
     [SerializeField]
     private GameObject thruster1;
     [SerializeField]
@@ -72,6 +83,16 @@ public class CarMotor : MonoBehaviour {
     public void ApplyThruster(Vector3 _thrusterforce)
     {
         thrusterforce = _thrusterforce;
+    }
+
+    /////////////////////////////////////////
+    //get forces for the Thruster
+    public void Activate_JUMP_effects(bool state)
+    {
+        thruster_eff1.SetActive(state);
+        thruster_eff2.SetActive(state);
+        thruster_eff3.SetActive(state);
+        thruster_eff4.SetActive(state);
     }
     /////////////////////////////////////////
 
