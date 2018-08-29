@@ -15,6 +15,8 @@ public class CarWeaponManager : NetworkBehaviour {
     [SerializeField]
     private CarWeapon primaryWeapon;
 
+    //public Behaviour raycast_shoot;
+
     //Sounds
     public AudioSource m_MiniGunAudio;
     public AudioClip m_Reload;
@@ -51,6 +53,11 @@ public class CarWeaponManager : NetworkBehaviour {
         GameObject _weaponIns = (GameObject)Instantiate(_weapon.gungraphics, weaponHolder.position, weaponHolder.rotation);
         _weaponIns.transform.SetParent(weaponHolder);
 
+        //raycast_shoot = _weaponIns.GetComponent</* prefab eka atule tyena umbe script eke name eka gahapan */>();
+
+       // raycast_shoot.FpsCam = /* umbata one karana camera object eka assign karapan */
+
+        //** udin serialized field ekak dala kalinma camera eka aragena hitapan**
         
         ////////////////////////////////////////////////////////////////////////////////
 
