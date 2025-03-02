@@ -15,10 +15,10 @@ public class PlayerUI : MonoBehaviour {
     [SerializeField]
     Text maxAmmoText;
 
-    private Player player;
+    //private Player player;
     private PlayerObject car;
 
-    private PlayerController controller1;
+    //private PlayerController controller1;
     private CarController controller2;
 
     private CarWeaponManager weaponManager;
@@ -47,9 +47,10 @@ public class PlayerUI : MonoBehaviour {
 
     void Update ()
     {
-        if(type == 1)
-            SetFuelAmount(controller1.GetThrusterFuelAmount());
-        else if(type == 2)
+        //if(type == 1)
+            //SetFuelAmount(controller1.GetThrusterFuelAmount());
+        //else 
+        if(type == 2)
             SetFuelAmount(controller2.GetThrusterFuelAmount());
 
         //health
@@ -94,11 +95,11 @@ public class PlayerUI : MonoBehaviour {
         type = _type;
     }
 
-    public void SetPlayer(Player _player)
-    {
-        player = _player;
-        controller1 = player.GetComponent<PlayerController>();
-    }
+    // public void SetPlayer(Player _player)
+    // {
+    //     player = _player;
+    //     controller1 = player.GetComponent<PlayerController>();
+    // }
 
     public void SetCar(PlayerObject _car)
     {
